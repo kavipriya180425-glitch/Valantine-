@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For My Chellam ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    text-align:center;
+    color:white;
+    overflow-x:hidden;
+    background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ff4d6d, #ff8fa3);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.container{
+    padding:40px 20px;
+}
+
+.card{
+    background: rgba(255,255,255,0.15);
+    padding:25px;
+    border-radius:20px;
+    max-width:450px;
+    margin:20px auto;
+    backdrop-filter: blur(10px);
+}
+
+input{
+    padding:10px;
+    width:80%;
+    border:none;
+    border-radius:20px;
+    text-align:center;
+}
+
+button{
+    margin-top:10px;
+    padding:8px 20px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.response{
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.yesBtn{ background:red; color:white; }
+.noBtn{ background:white; color:#ff4d6d; }
+
+.heart{
+    position:fixed;
+    color:red;
+    font-size:20px;
+    animation: float 4s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh); opacity:1;}
+    100%{transform:translateY(-10vh); opacity:0;}
+}
+
+.music-btn{
+    position:fixed;
+    top:10px;
+    right:10px;
+    background:white;
+    color:#ff4d6d;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="your-song.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="playMusic()">🎵 Play Music</button>
+
+<div class="container">
+
+<h1>💖 Answer Honestly Mister 😌💌</h1>
+
+<script>
+let questions = [
+"Naa unga life la yaaru?",
+"Namba love anniversary date?",
+"Ungaluku yenkitta romba pudicha vishyam?",
+"Naa kovama irundha epdi samalippinga?",
+"Naa cute ah illa danger ah? 😜",
+"En kitta fight panna bayama illa fun aa?",
+"Naa unga dream girl ah illa luck ah?"
+];
+
+questions.forEach((q, index) => {
+document.write(`
+<div class="card">
+<h3>Question ${index+1}</h3>
+<p>${q}</p>
+<input type="text" id="answer${index}" placeholder="Type your answer ❤️">
+<br>
+<button onclick="submitAnswer(${index})">Submit 💌</button>
+<div class="response" id="response${index}"></div>
+</div>
+`);
+});
+
+function submitAnswer(i){
+let value = document.getElementById("answer"+i).value;
+
+if(value.length > 0){
+document.getElementById("response"+i).innerHTML =
+"Awww 😘 Noted da chellam ❤️";
+} else {
+document.getElementById("response"+i).innerHTML =
+"Answer type pannunga mister 😜";
+}
+}
+
+function playMusic(){
+document.getElementById("bgMusic").play();
+}
+
+function noClicked(){
+document.getElementById("finalMessage").innerHTML =
+"Already maatikittinga 😜 No solla mudiyadhu!";
+}
+
+function yesClicked(){
+document.getElementById("finalMessage").innerHTML =
+"Yayyyy ❤️ Love you forever chellam ♾️😘";
+
+for(let i=0;i<30;i++){
+let heart = document.createElement("div");
+heart.innerHTML = "❤️";
+heart.classList.add("heart");
+heart.style.left = Math.random()*100 + "vw";
+heart.style.animationDuration = (Math.random()*2+2)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},3000);
+}
+}
+</script>
+
+<!-- Final Proposal -->
+<div class="card">
+<h2>💍 Will you be my Valentine forever? 💖</h2>
+<button class="yesBtn" onclick="yesClicked()">Yes ❤️</button>
+<button class="noBtn" onclick="noClicked()">No 😜</button>
+<div class="response" id="finalMessage"></div>
+</div>
+
+</div>
+
+</body>
+</html>
